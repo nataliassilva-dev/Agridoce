@@ -15,6 +15,7 @@ function CatalogContent() {
   const [viewMode, setViewMode] = useState<'pages' | 'continuous'>('pages');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isPdfModalOpen, setIsPdfModalOpen] = useState<boolean>(false);
+  const [isPreparingPdf, setIsPreparingPdf] = useState<boolean>(false);
   const { totalItems, totalValue, setIsCartOpen } = useOrder();
 
   const handleNextPage = () => {
@@ -31,12 +32,13 @@ function CatalogContent() {
     }
   };
 
-  const handleExecutePdfGeneration = () => {
-    setViewMode('continuous');
+  const handlePreparePdf = () => {
+    setIsPreparingPdf(true);
     setSearchQuery('');
-    setTimeout(() => {
-      window.print();
-    }, 350);
+  };
+
+  const handleRestorePdf = () => {
+    setIsPreparingPdf(false);
   };
 
   return (
@@ -63,7 +65,7 @@ function CatalogContent() {
 
       {/* Main Catalog Display Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
-        {viewMode === 'pages' ? (
+        {viewMode === 'pages' && !isPreparingPdf ? (
           <div>
             {/* Quick Page Indicator Pills */}
             <div className="flex items-center justify-between mb-4 px-2 no-print">
@@ -228,7 +230,8 @@ function CatalogContent() {
       <PdfExportModal
         isOpen={isPdfModalOpen}
         onClose={() => setIsPdfModalOpen(false)}
-        onConfirmPdf={handleExecutePdfGeneration}
+        prepareForPdf={handlePreparePdf}
+        restoreAfterPdf={handleRestorePdf}
       />
     </div>
   );
