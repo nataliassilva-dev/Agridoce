@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #fcfaf7;
+    color: #292524;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: var(--font-serif);
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 8mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #1c1917 !important;
+    font-size: 10pt !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide interactive UI elements */
+  header,
+  nav,
+  .no-print,
+  button,
+  input,
+  textarea,
+  .sticky {
+    display: none !important;
+  }
+
+  /* Show print-only elements */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Exact 3-page pagination */
+  .page-container {
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    border: 1px solid #e5dccf !important;
+    border-radius: 8px !important;
+    margin: 0 0 20px 0 !important;
+    padding: 20px !important;
+    background: #ffffff !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .page-container:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  /* Ensure photos and backgrounds keep their rich colors */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Avoid awkward breaks inside cards */
+  .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Agridoce Gourmet - Catálogo de Natal e Réveillon",
+  "description": "Catálogo dinâmico de fim de ano da Agridoce Gourmet com tortas artesanais, quiches, salgados folhados, antepastos e taças gourmets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
